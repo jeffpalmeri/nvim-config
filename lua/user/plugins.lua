@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
   -- cmp plugins
   use 'hrsh7th/nvim-cmp' -- Completions from LSP
   use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -48,6 +49,15 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- LSP congif plugin from Neovim core
   use "williamboman/nvim-lsp-installer" -- simple to use language server installed
 
+  use "onsails/lspkind-nvim"
+
+  use 'tjdevries/colorbuddy.vim'
+  use 'tjdevries/gruvbuddy.nvim'
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

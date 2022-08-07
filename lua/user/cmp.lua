@@ -1,3 +1,12 @@
+local ok, lspkind = pcall(require, "lspkind")
+if not ok then
+  return
+else
+  print "lspkind found but apperently not working wooooooo!!!"
+end
+
+-- lspkind.init() 
+ 
  -- Setup nvim-cmp.
   vim.opt.completeopt = {"menu", "menuone", "noselect"}
   local cmp = require'cmp'
@@ -19,12 +28,43 @@
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
-    sources = cmp.config.sources({
+    sources = {
+      { name = 'buffer', keyword_length = 5}
+      { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'luasnip' }, -- For luasnip users.
-    }, {
-      { name = 'buffer' },
-    })
+    },
+    formatting = {
+      -- Youtube: How to set up nice formatting for your sources.
+      format = lspkind.cmp_format {
+        with_text = true,
+        -- mode = 'symbol', -- show only symbol annotations
+        -- maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        menu = {
+          buffer = "[buf]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[api]",
+          path = "[path]",
+          luasnip = "[snip]",
+          gh_issues = "[issues]",
+          tn = "[TabNine]",
+        },
+        before = function (entry, vim_item)
+          print "Hello from within lspkind before function"
+          return vim_item
+        end
+      },
+    },
+  --   sources = cmp.config.sources({
+  --     { name = 'nvim_lsp' },
+  --     { name = 'nvim_lua' },
+  --     { name = 'luasnip' }, -- For luasnip users.
+  --     { name = 'buffer', keyword_length = 5}
+  --   }, 
+  --   {
+  --     { name = 'buffer' },
+  --   }
+  -- )
   })
 
   --[[
