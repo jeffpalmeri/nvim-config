@@ -7,10 +7,42 @@ require "user.plugins"
 require "completion"
 require "lsp"
 require "treesitter"
+require "autopairs"
 
+--[[
+-- require('colorbuddy').colorscheme('gruvbuddy')
+vim.o.background = 'dark'
 
-require('colorbuddy').colorscheme('gruvbuddy')
+local c = require('vscode.colors')
+require('vscode').setup({
+    -- Enable transparent background
+    transparent = true,
 
+    -- Enable italic comment
+    italic_comments = true,
+
+    -- Disable nvim-tree background color
+    disable_nvimtree_bg = true,
+
+    -- Override colors (see ./lua/vscode/colors.lua)
+    color_overrides = {
+        vscLineNumber = '#FFFFFF',
+    },
+
+    -- Override highlight groups (see ./lua/vscode/theme.lua)
+    group_overrides = {
+        -- this supports the same val table as vim.api.nvim_set_hl
+        -- use colors from this colorscheme by requiring vscode.colors!
+        Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
+    }
+})
+]]
+local colorscheme = "darkplus"
+
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+  return
+end
 -- local ok, lspkind = pcall(require, "lspkind")
 -- if not ok then
 --   return
@@ -116,6 +148,41 @@ require('colorbuddy').colorscheme('gruvbuddy')
 
 --   -- Install parsers synchronously (only applied to `ensure_installed`)
 --   sync_install = false,
+require('telescope').setup{
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    prompt_prefix = "$ ",
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    }
+  },
+  pickers = {
+    -- Default configuration for builtin pickers goes here:
+    -- picker_name = {
+    --   picker_config_key = value,
+    --   ...
+    -- }
+    -- Now the picker_config_key will be applied every time you call this
+    -- builtin picker
+  },
+  extensions = {
+    -- Your extension configuration goes here:
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+    -- please take a look at the readme of the extension you want to configure
+  }
+}
+
+-- require('telescope').
+
+
 
 --   -- Automatically install missing parsers when entering buffer
 --   auto_install = true,
@@ -140,3 +207,4 @@ require('colorbuddy').colorscheme('gruvbuddy')
 --     additional_vim_regex_highlighting = false,
 --   },
 -- }
+--

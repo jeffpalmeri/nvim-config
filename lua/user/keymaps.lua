@@ -16,7 +16,7 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
-keymap('i', 'jk', '<ESC>', opts) 
+keymap('i', 'jk', '<ESC>', opts)
 
-keymap("n", "<leader>l", "$", opts) 
-keymap("n", "<leader>h", "^", opts) 
+keymap("n", "<leader>l", "$", opts)
+keymap("n", "<leader>h", "^", opts)
