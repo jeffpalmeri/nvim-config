@@ -8,7 +8,7 @@ require "completion"
 require "lsp"
 require "treesitter"
 require "autopairs"
-
+require "_gitsigns"
 --[[
 -- require('colorbuddy').colorscheme('gruvbuddy')
 vim.o.background = 'dark'
@@ -102,7 +102,7 @@ end
 -- lspconfig.gopls.setup{
 --   on_attach = function()
 --     print "gopls is attaching!!!"
---     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })  
+--     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 --     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
 --     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
 --     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
@@ -116,7 +116,7 @@ end
 -- lspconfig.sumneko_lua.setup{
 --   on_attach = function()
 --     print "Sumneko_lua is attaching!!!"
---     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })  
+--     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 --     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
 --     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
 --     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
@@ -130,7 +130,7 @@ end
 -- lspconfig.tsserver.setup{
 --   on_attach = function()
 --     print "tsserver is attaching!!!"
---     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })  
+--     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 --     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
 --     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
 --     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
@@ -148,7 +148,7 @@ end
 
 --   -- Install parsers synchronously (only applied to `ensure_installed`)
 --   sync_install = false,
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
@@ -208,3 +208,67 @@ require('telescope').setup{
 --   },
 -- }
 --
+
+-- examples for your init.lua
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
+
+-- vim.api.nvim_set_keymap("n", "<leader>ff","<CMD>NvimTreeToggle<CR>", { noremap = true})
+vim.api.nvim_set_keymap("n", ",e", "<CMD>NvimTreeToggle<CR>", { noremap = true })
+
+
+-- trying a smooth scroll plugin
+require('neoscroll').setup({
+  -- All these keys will be mapped to their corresponding default scrolling animation
+  mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+    '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+  hide_cursor = true, -- Hide cursor while scrolling
+  stop_eof = true, -- Stop at <EOF> when scrolling downwards
+  respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+  cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+  easing_function = nil, -- Default easing function
+  pre_hook = nil, -- Function to run before the scrolling animation starts
+  post_hook = nil, -- Function to run after the scrolling animation ends
+  performance_mode = false, -- Disable "Performance Mode" on all buffers.
+})
+
+
+-- tabs plugin
+vim.opt.termguicolors = true
+require("bufferline").setup({
+  options = {
+    diagnostics = true,
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        highlight = "Directory",
+        text_align = "left"
+      }
+    }
+  }
+})
+
+vim.api.nvim_set_keymap("n", "L", "<CMD>BufferLineCycleNext<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "H", "<CMD>BufferLineCyclePrev<CR>", { noremap = true })

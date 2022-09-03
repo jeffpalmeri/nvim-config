@@ -73,7 +73,28 @@ return require('packer').startup(function(use)
   use {
 	"windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
-}
+  }
+
+  -- Nerdtree
+  -- use 'preservim/nerdtree'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
+  -- gitsigns
+  use { 'lewis6991/gitsigns.nvim' }
+
+
+  -- Smooth scrolling plugin
+  use 'karb94/neoscroll.nvim'
+
+  -- tabs
+  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

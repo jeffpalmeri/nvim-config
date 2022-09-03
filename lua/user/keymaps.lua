@@ -20,3 +20,6 @@ keymap('i', 'jk', '<ESC>', opts)
 
 keymap("n", "<leader>l", "$", opts)
 keymap("n", "<leader>h", "^", opts)
+
+-- keymap("n", "<D-s>", "<cmd>w<CR>", opts)
+keymap("n", ",l", "<cmd>w<CR>", opts)
