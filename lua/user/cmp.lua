@@ -29,7 +29,7 @@ end
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = {
-      { name = 'buffer', keyword_length = 5}
+      { name = 'buffer', keyword_length = 5},
       { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
       { name = 'luasnip' }, -- For luasnip users.

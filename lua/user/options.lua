@@ -10,3 +10,4 @@ vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = 'a'
+-- vim.opt.shortmess = 'a'

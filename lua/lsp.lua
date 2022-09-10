@@ -33,16 +33,17 @@ function OrgImports(wait_ms)
     end
   end
 end
+
 vim.cmd [[autocmd BufWritePre *.go lua OrgImports(1000)]]
 
-vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting()]]
+vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]]
 
 
 lspconfig.sumneko_lua.setup {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' }
+        globals = { 'vim', 'P' }
       }
     }
   },
@@ -58,8 +59,8 @@ lspconfig.sumneko_lua.setup {
   end,
   capabilities = capabilities,
 }
-vim.cmd [[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()]]
-
+vim.cmd [[autocmd BufWritePost *.lua lua vim.lsp.buf.formatting_sync()]]
+-- local myVar = "hello"
 lspconfig.tsserver.setup {
   on_attach = function()
     print "tsserver is attaching!!!"
