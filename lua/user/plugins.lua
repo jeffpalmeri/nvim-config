@@ -96,12 +96,43 @@ return require('packer').startup(function(use)
 
   -- tabs
   -- use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-use {
-  'romgrk/barbar.nvim',
-  requires = {'kyazdani42/nvim-web-devicons'}
-}
+  use {
+    'romgrk/barbar.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  }
   -- use '/Users/jpalmeri/Documents/personal/learning-lua-plugins'
   use '/Users/jpalmeri/Documents/personal/stackmap.nvim'
+
+  -- Toggle Term
+  --use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+  --require("toggleterm").setup()
+  --end }
+  use "akinsho/toggleterm.nvim"
+
+
+  -- Comment plugin
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
+  -- Colorizer.lua
+  use {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    config = function()
+      require("colorizer").setup()
+    end,
+  }
+
+
+
+  -- use {
+  --   "zbirenbaum/neodim",
+  --   event = "LspAttach"
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
