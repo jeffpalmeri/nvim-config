@@ -41,6 +41,14 @@ function Req_gruvbuddy()
   require('colorbuddy').colorscheme('gruvbuddy')
 end
 
+function Req_catputchin()
+  vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+
+  require("catppuccin").setup()
+
+  vim.cmd [[colorscheme catppuccin]]
+end
+
 M = {
 
   darkplus = Req_darkplus,
@@ -49,8 +57,7 @@ M = {
 
   gruvbuddy = Req_gruvbuddy,
 
-  catputchin = function()
-  end
+  catputchin = Req_catputchin
 }
 
 return M

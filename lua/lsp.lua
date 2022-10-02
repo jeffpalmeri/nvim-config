@@ -36,7 +36,8 @@ end
 
 vim.cmd [[autocmd BufWritePre *.go lua OrgImports(1000)]]
 
-vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]]
+-- vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format()]]
 
 
 lspconfig.sumneko_lua.setup {
@@ -59,7 +60,7 @@ lspconfig.sumneko_lua.setup {
   end,
   capabilities = capabilities,
 }
-vim.cmd [[autocmd BufWritePost *.lua lua vim.lsp.buf.formatting_sync()]]
+vim.cmd [[autocmd BufWritePost *.lua lua vim.lsp.buf.format()]]
 -- local myVar = "hello"
 lspconfig.tsserver.setup {
   on_attach = function()
