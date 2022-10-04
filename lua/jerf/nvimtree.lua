@@ -1,4 +1,3 @@
-
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   open_on_setup = true,
@@ -23,3 +22,4 @@ require("nvim-tree").setup({
 vim.api.nvim_set_keymap("n", ",e", "<CMD>NvimTreeToggle<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", ",f", "<CMD>NvimTreeFocus<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", ",,a", "<CMD>NvimTreeFindFile<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", ",,b", "<CMD>NvimTreeCollapse<CR>", { noremap = true })

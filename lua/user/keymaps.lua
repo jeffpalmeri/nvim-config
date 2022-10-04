@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Modes
---   normal_mode = "n",
+  --   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
 --   visual_block_mode = "x",
@@ -28,3 +28,9 @@ keymap("n", ",l", "<cmd>w<CR>", opts)
 
 keymap("n", "<leader><leader>x", "<CMD>source %<CR>", opts)
 -- nnoremap <leader><leader>v :w<CR>:Vader %<CR>
+
+-- I tried mapping these here but doesn't seem to be working. So rn I just have iterm mapping to things like <C-w>l
+keymap("n", "<D-l>", "<C-w>l", opts)
+keymap("n", "<D-h>", "<C-w>h", opts)
+keymap("n", "<D-j", "<C-w>j", opts)
+keymap("n", "<D-k>", "<C-w>k", opts)
