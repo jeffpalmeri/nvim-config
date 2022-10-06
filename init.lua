@@ -10,14 +10,16 @@ require "treesitter"
 require "autopairs"
 require "_gitsigns"
 
--- require "jerf.bufferline"
+require "jerf.bufferline"
 require "jerf.smoothscroll"
 require "jerf.toggle-term"
 require "jerf.comment"
 require "jerf.telescope"
 require "jerf.nvimtree"
-require "jerf.barbar"
+-- require "jerf.barbar"
 require "jerf.colors"
+require "jerf.null_ls"
+require "jerf.diffview"
 
 require "globals"
 
@@ -56,5 +58,4 @@ for _, buf in ipairs(vim.api.nvim_list_bufs()) do
   print("buf name: ", buf_name)
 end
 
-vim.api.nvim_buf_delete(1, {})
-
+-- vim.api.nvim_buf_delete(1, {})

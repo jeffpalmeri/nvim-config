@@ -1,4 +1,3 @@
-
 require('telescope').setup {
   defaults = {
     -- Default configuration for telescope goes here:
@@ -32,5 +31,6 @@ require('telescope').setup {
 }
 
 vim.api.nvim_set_keymap('n', '<leader>ff', '<Cmd>Telescope find_files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>grs', '<Cmd>Telescope grep_string<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gr', '<Cmd>Telescope grep_string<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', '<Cmd>Telescope git_status<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>b', '<Cmd>Telescope buffers<CR>', { noremap = true }) 

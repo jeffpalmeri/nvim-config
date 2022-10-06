@@ -44,7 +44,9 @@ end
 function Req_catputchin()
   vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 
-  require("catppuccin").setup()
+  require("catppuccin").setup({
+transparent_background = false,
+  })
 
   vim.cmd [[colorscheme catppuccin]]
 end

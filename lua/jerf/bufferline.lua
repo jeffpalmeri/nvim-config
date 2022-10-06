@@ -18,3 +18,4 @@ require("bufferline").setup({
 })
 vim.api.nvim_set_keymap("n", "L", "<CMD>BufferLineCycleNext<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "H", "<CMD>BufferLineCyclePrev<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "W", "<CMD>bd<CR>", { noremap = true })

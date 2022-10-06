@@ -37,7 +37,7 @@ end
 vim.cmd [[autocmd BufWritePre *.go lua OrgImports(1000)]]
 
 -- vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]]
-    vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format()]]
+vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format()]]
 
 
 lspconfig.sumneko_lua.setup {
@@ -63,7 +63,7 @@ lspconfig.sumneko_lua.setup {
 vim.cmd [[autocmd BufWritePost *.lua lua vim.lsp.buf.format()]]
 -- local myVar = "hello"
 lspconfig.tsserver.setup {
-  on_attach = function()
+  on_attach = function(client)
     print "tsserver is attaching!!!"
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
@@ -72,9 +72,11 @@ lspconfig.tsserver.setup {
     vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = 0 })
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
     vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+    client.server_capabilities.documentFormattingProvider = false
   end,
   capabilities = capabilities,
 }
+vim.cmd [[autocmd BufWritePre *.ts lua vim.lsp.buf.format()]]
 
 lspconfig.clangd.setup {
   on_attach = function()

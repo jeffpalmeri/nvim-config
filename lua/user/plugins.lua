@@ -95,11 +95,13 @@ return require('packer').startup(function(use)
   use 'karb94/neoscroll.nvim'
 
   -- tabs
-  -- use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-  use {
-    'romgrk/barbar.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  }
+  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+
+  -- use {
+  --   'romgrk/barbar.nvim',
+  --   requires = { 'kyazdani42/nvim-web-devicons' }
+  -- }
+
   -- use '/Users/jpalmeri/Documents/personal/learning-lua-plugins'
   use '/Users/jpalmeri/Documents/personal/stackmap.nvim'
 
@@ -128,6 +130,8 @@ return require('packer').startup(function(use)
   }
 
   use { "catppuccin/nvim", as = "catppuccin" }
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "sindrets/diffview.nvim"
 
   -- use {
   --   "zbirenbaum/neodim",
