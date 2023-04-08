@@ -1,6 +1,6 @@
 require "nvim-lsp-installer".setup()
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Setup LSP
 local lspconfig = require('lspconfig')
 lspconfig.gopls.setup {
@@ -10,7 +10,7 @@ lspconfig.gopls.setup {
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
     vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
   end,
@@ -40,7 +40,7 @@ vim.cmd [[autocmd BufWritePre *.go lua OrgImports(1000)]]
 vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format()]]
 
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {
@@ -49,12 +49,12 @@ lspconfig.sumneko_lua.setup {
     }
   },
   on_attach = function()
-    print "Sumneko_lua is attaching!!!"
+    print "lua_ls is attaching!!!"
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
     vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
   end,
@@ -66,17 +66,21 @@ lspconfig.tsserver.setup {
   on_attach = function(client)
     print "tsserver is attaching!!!"
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "<leader>K", vim.diagnostic.open_float, { buffer = 0 })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
     vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
     client.server_capabilities.documentFormattingProvider = false
   end,
   capabilities = capabilities,
 }
-vim.cmd [[autocmd BufWritePre *.ts lua vim.lsp.buf.format()]]
+vim.cmd [[autocmd BufWritePre *.ts lua vim.lsp.buf.format({timeout_ms = 7000})]]
+vim.cmd [[autocmd BufWritePre *.tsx lua vim.lsp.buf.format({timeout_ms = 7000})]]
+vim.cmd [[autocmd BufWritePre *.js lua vim.lsp.buf.format({timeout_ms = 7000})]]
+vim.cmd [[autocmd BufWritePre *.jsx lua vim.lsp.buf.format()]]
 
 lspconfig.clangd.setup {
   on_attach = function()
@@ -85,9 +89,132 @@ lspconfig.clangd.setup {
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-    vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
     vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
   end,
   capabilities = capabilities,
 }
+
+
+lspconfig.terraformls.setup {
+  on_attach = function()
+    print "terraform-ls is attaching!!!"
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+  end,
+  capabilities = capabilities,
+}
+vim.cmd [[autocmd BufWritePost *.tf lua vim.lsp.buf.format()]]
+
+lspconfig.phpactor.setup {
+  on_attach = function()
+    print "phpactor is attaching!!!"
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+  end,
+  capabilities = capabilities,
+}
+
+require 'lspconfig'.apex_ls.setup {
+  apex_jar_path                     = '/Users/jpalmeri/Downloads/apex-jorje-lsp.jar',
+  apex_enable_semantic_errors       = false, -- Whether to allow Apex Language Server to surface semantic errors
+  apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+  filetypes                         = { "apexcode", "apex", "trigger", "st", "cls" },
+  on_attach                         = function()
+    print "apex_ls is attaching!!!"
+    -- vim.bo.filetype = 'java'
+    -- vim.bo[1].filetype = 'java'
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+  end,
+  capabilities                      = capabilities,
+}
+-- lspconfig.apex_ls.setup {
+--   apex_jar_path                     = '/Users/jpalmeri/Downloads/apex-jorje-lsp.jar',
+--   -- apex_jar_path                     = vim.fn.expand('$HOME/Downloads/apex-jorje-lsp.jar'),
+--   apex_enable_semantic_errors       = true, -- Whether to allow Apex Language Server to surface semantic errors
+--   apex_enable_completion_statistics = false, -- Whether to allow Apex Language Server to collect telemetry on code completion usage
+--   filetype                          = { "apexcode", "apex", "trigger", "st", "cls" },
+--   on_attach                         = function()
+--     print "apex_ls is attaching!!!"
+--     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+--     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+--     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+--     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+--     vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+--     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+--     vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+--   end,
+--   capabilities                      = capabilities,
+-- }
+
+lspconfig.bashls.setup {
+  on_attach = function()
+    print "bashls is attaching!!!"
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+  end,
+  capabilities = capabilities,
+}
+
+lspconfig.tailwindcss.setup {
+  on_attach = function()
+    print "tailwindcss is attaching!!!"
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "<leader>K", vim.diagnostic.open_float, { buffer = 0 })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+    -- client.server_capabilities.documentFormattingProvider = false
+  end,
+  capabilities = capabilities,
+}
+
+lspconfig.rust_analyzer.setup {
+  on_attach = function()
+    print "rust_analyzer is attaching!!!"
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+    vim.keymap.set("n", "<leader>K", vim.diagnostic.open_float, { buffer = 0 })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { buffer = 0 })
+    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = 0 })
+    -- client.server_capabilities.documentFormattingProvider = false
+  end,
+  capabilities = capabilities,
+  cmd = { "rustup", "run", "stable", "rust-analyzer" },
+  -- settings = {
+  --   ['rust-analyzer'] = {
+  --     diagnostics = {
+  --       enable = false,
+  --     }
+  --   }
+  -- }
+}
+vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]]

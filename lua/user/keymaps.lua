@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Modes
-  --   normal_mode = "n",
+--   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
 --   visual_block_mode = "x",
@@ -34,3 +34,16 @@ keymap("n", "<D-l>", "<C-w>l", opts)
 keymap("n", "<D-h>", "<C-w>h", opts)
 keymap("n", "<D-j", "<C-w>j", opts)
 keymap("n", "<D-k>", "<C-w>k", opts)
+
+-- copen, ccl
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "n", "nzz", opts)
+
+keymap("i", "\\s", "<esc><cmd>w<CR>", opts)
+keymap("n", "\\s", "<cmd>w<CR>", opts)
+
+keymap("n", "\\rl", "<cmd>ToggleRelativeLineNumber<CR>", opts)
+
+keymap("n", "<C-e>", "5<C-e>", opts)
+keymap("n", "<C-y>", "5<C-y>", opts)

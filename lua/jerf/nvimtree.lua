@@ -4,6 +4,7 @@ require("nvim-tree").setup({
   disable_netrw = false,
   view = {
     adaptive_size = true,
+    side = "left",
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
@@ -15,8 +16,11 @@ require("nvim-tree").setup({
     highlight_git = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
+  git = {
+    ignore = false
+  }
 })
 
 vim.api.nvim_set_keymap("n", ",e", "<CMD>NvimTreeToggle<CR>", { noremap = true })

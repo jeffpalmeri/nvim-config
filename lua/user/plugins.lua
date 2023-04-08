@@ -61,21 +61,28 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  -- use {
+  --   'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  --   -- or                            , branch = '0.1.x',
+  --   requires = { { 'nvim-lua/plenary.nvim' } }
+  -- }
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    'nvim-telescope/telescope.nvim',
     -- or                            , branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use { 'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   -- Colorschemes
-  use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
-  use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
+  -- use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
+  -- use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
+  -- use { "lunarvim/darkplus.nvim" }
+  -- use { "gutyina70/darkplus.nvim", branch = "fix-whitespace-rendering" }
   -- autopairs
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
+  -- use {
+  --   "windwp/nvim-autopairs",
+  --   config = function() require("nvim-autopairs").setup {} end
+  -- }
 
   -- Nerdtree
   -- use 'preservim/nerdtree'
@@ -130,12 +137,27 @@ return require('packer').startup(function(use)
   }
 
   use { "catppuccin/nvim", as = "catppuccin" }
+  use 'folke/tokyonight.nvim'
   use "jose-elias-alvarez/null-ls.nvim"
   use "sindrets/diffview.nvim"
 
+  use 'MunifTanjim/nui.nvim'
+
+  use "lukas-reineke/indent-blankline.nvim"
+
+
+
+
+  use { 'kevinhwang91/nvim-bqf' }
   -- use {
   --   "zbirenbaum/neodim",
   --   event = "LspAttach"
+  -- }
+
+  -- Testing lualine
+  --   use {
+  --   'nvim-lualine/lualine.nvim',
+  --   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   -- }
 
   -- Automatically set up your configuration after cloning packer.nvim

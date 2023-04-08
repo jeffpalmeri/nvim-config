@@ -13,4 +13,6 @@ vim.opt.mouse = 'a'
 -- vim.opt.shortmess = 'a'
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.guicursor=""
 
+vim.opt.scrolloff = 7

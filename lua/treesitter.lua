@@ -1,6 +1,6 @@
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust" },
+  ensure_installed = { "c", "lua", "rust", "java" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -27,4 +27,17 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  -- parsers = {
+  --   filetype_to_parser = {
+  --     cls = "java"
+  --   }
+  -- }
 }
+
+
+-- local parsers = require "nvim-treesitter.parsers"
+-- local parser_config = parsers.get_parser_configs()
+-- P(parser_config)
+-- parser_config.jsonc.filetype_to_parsername = "java"
+-- parser_config.trigger.filetype_to_parsername = "java"
+-- parser_config.filetype_to_parsername.trigger = "java"
