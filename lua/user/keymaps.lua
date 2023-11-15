@@ -47,3 +47,15 @@ keymap("n", "\\rl", "<cmd>ToggleRelativeLineNumber<CR>", opts)
 
 keymap("n", "<C-e>", "5<C-e>", opts)
 keymap("n", "<C-y>", "5<C-y>", opts)
+keymap("v", "<C-e>", "5<C-e>", opts)
+keymap("v", "<C-y>", "5<C-y>", opts)
+keymap("n", "<C-p>", "<cmd>Ex<CR>", opts)
+
+keymap("n", "<leader>hj", "<cmd>%!jq<CR>", opts)
+keymap("n", "<leader>te", "<cmd>vs<CR><cmd>terminal<CR>A", opts)
+keymap("t", "<leader>to", "<C-w><C-N>", opts)
+keymap("t", "<leader>ta", "<C-\\><C-N>", opts)
+
+keymap("v", "m", "ygv<esc>p", opts)
+keymap("n", "m", "yyp", opts)
+-- keymap("v", "M", "ygv<leader>gc<esc>p", opts)

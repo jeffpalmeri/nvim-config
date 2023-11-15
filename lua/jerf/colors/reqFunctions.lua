@@ -9,25 +9,20 @@ end
 
 -- require('colorbuddy').colorscheme('gruvbuddy')
 function Req_vsCodeColors()
-
   vim.o.background = 'dark'
 
   local c = require('vscode.colors')
   require('vscode').setup({
     -- Enable transparent background
     transparent = true,
-
     -- Enable italic comment
     italic_comments = true,
-
     -- Disable nvim-tree background color
     disable_nvimtree_bg = true,
-
     -- Override colors (see ./lua/vscode/colors.lua)
     color_overrides = {
       vscLineNumber = '#FFFFFF',
     },
-
     -- Override highlight groups (see ./lua/vscode/theme.lua)
     group_overrides = {
       -- this supports the same val table as vim.api.nvim_set_hl
@@ -43,6 +38,9 @@ end
 
 function Req_catputchin()
   vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+  -- vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+  -- vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+  -- vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
 
   require("catppuccin").setup({
     transparent_background = false,
@@ -63,22 +61,16 @@ function Req_tokyo()
     on_colors = function(colors)
       colors.bg = "#090a0f"
       -- colors.bg = "#12141c"
-
     end
   })
-vim.cmd[[colorscheme tokyonight]]
+  vim.cmd [[colorscheme tokyonight]]
 end
 
 M = {
-
   darkplus = Req_darkplus,
-
   vsCodeColors = Req_vsCodeColors,
-
   gruvbuddy = Req_gruvbuddy,
-
   catputchin = Req_catputchin,
-
   tokyo = Req_tokyo
 }
 

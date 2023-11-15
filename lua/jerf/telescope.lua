@@ -40,7 +40,9 @@ require('telescope').setup {
   }
 }
 
+
 vim.api.nvim_set_keymap('n', '<leader>ff', '<Cmd>Telescope find_files<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fy', '<Cmd>Telescope find_files search_dirs={".build"}<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gr', '<Cmd>Telescope grep_string<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>lg', '<Cmd>Telescope live_grep<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', '<Cmd>Telescope git_status<CR>', { noremap = true })
@@ -52,4 +54,4 @@ vim.api.nvim_set_keymap('n', '<leader>di', '<Cmd>Telescope diagnostics<CR>', { n
 vim.api.nvim_set_keymap('n', '<leader>lr', '<Cmd>Telescope lsp_references<CR>', { noremap = true })
 -- require("telescope.builtin").live_grep({search_dirs={vim.fn.expand("%:p")}}) live_grep on single file only, from reddit
 -- require('telescope.builtin').live_grep({grep_open_files=true})
-vim.api.nvim_set_keymap('n', '<leader>gw', 'yiw<Cmd>Telescope live_grep<CR>i<C-r>"<Del>', { noremap = true }) -- This is not quite working correctly...
+vim.api.nvim_set_keymap('n', '<leader>gw', 'yiw<Cmd>Telescope live_grep<CR><C-r>"<Del><ESC>', { noremap = true }) -- This is not quite working correctly... maybe it is now, not sure.

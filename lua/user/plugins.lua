@@ -73,6 +73,7 @@ return require('packer').startup(function(use)
   }
   use { 'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+
   -- Colorschemes
   -- use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
   -- use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
@@ -123,9 +124,9 @@ return require('packer').startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-      require('Comment').setup()
+     require('Comment').setup()
     end
-  }
+   }
 
   -- Colorizer.lua
   use {
